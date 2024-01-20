@@ -36,6 +36,7 @@
 #include "scene/3d/skeleton_3d.h"
 #include "scene/animation/animation_player.h"
 #include "scene/resources/bone_map.h"
+#include <scene/resources/bindpose_data.h>
 
 void PostImportPluginSkeletonRenamer::get_internal_import_options(InternalImportCategory p_category, List<ResourceImporter::ImportOption> *r_options) {
 	if (p_category == INTERNAL_IMPORT_CATEGORY_SKELETON_3D_NODE) {
@@ -52,6 +53,16 @@ void PostImportPluginSkeletonRenamer::_internal_process(InternalImportCategory p
 		return;
 	}
 	Skeleton3D *skeleton = Object::cast_to<Skeleton3D>(p_node);
+
+	// Store Skeleton's bind-pose in this file's .import data, and potentially load a Bindpose to use from another file.
+	{
+		Object *bindpose_data = p_options["import/bindpose_data"].get_validated_object();
+		if (bindpose_data && bindpose_data->is_class("BindposeData")) {
+			print_line("set bindpose");
+			BindposeData *bpose = Object::cast_to<BindposeData>(bindpose_data);
+			bpose->process_skeleton(p_base_scene, skeleton);
+		}
+	}
 
 	// Rename bones in Skeleton3D.
 	{

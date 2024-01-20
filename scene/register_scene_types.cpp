@@ -145,6 +145,7 @@
 #include "scene/resources/atlas_texture.h"
 #include "scene/resources/audio_stream_polyphonic.h"
 #include "scene/resources/audio_stream_wav.h"
+#include "scene/resources/bindpose_data.h"
 #include "scene/resources/bit_map.h"
 #include "scene/resources/bone_map.h"
 #include "scene/resources/box_shape_3d.h"
@@ -930,7 +931,7 @@ void register_scene_types() {
 	GDREGISTER_CLASS(SkeletonProfile);
 	GDREGISTER_CLASS(SkeletonProfileHumanoid);
 	GDREGISTER_CLASS(BoneMap);
-
+	GDREGISTER_CLASS(BindposeData);
 	OS::get_singleton()->yield(); // may take time to init
 
 	GDREGISTER_CLASS(AudioStreamPlayer);

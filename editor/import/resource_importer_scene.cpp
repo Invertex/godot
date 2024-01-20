@@ -46,6 +46,7 @@
 #include "scene/3d/vehicle_body_3d.h"
 #include "scene/animation/animation_player.h"
 #include "scene/resources/animation.h"
+#include "scene/resources/bindpose_data.h"
 #include "scene/resources/box_shape_3d.h"
 #include "scene/resources/importer_mesh.h"
 #include "scene/resources/packed_scene.h"
@@ -1742,6 +1743,7 @@ void ResourceImporterScene::get_internal_import_options(InternalImportCategory p
 		} break;
 		case INTERNAL_IMPORT_CATEGORY_SKELETON_3D_NODE: {
 			r_options->push_back(ImportOption(PropertyInfo(Variant::BOOL, "import/skip_import", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_UPDATE_ALL_IF_MODIFIED), false));
+			r_options->push_back(ImportOption(PropertyInfo(Variant::OBJECT, "import/bindpose_data", PROPERTY_HINT_RESOURCE_TYPE, "BindposeData", PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_UPDATE_ALL_IF_MODIFIED), Variant()));
 			r_options->push_back(ImportOption(PropertyInfo(Variant::OBJECT, "retarget/bone_map", PROPERTY_HINT_RESOURCE_TYPE, "BoneMap", PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_UPDATE_ALL_IF_MODIFIED), Variant()));
 		} break;
 		default: {
